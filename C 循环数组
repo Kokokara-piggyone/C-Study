@@ -23,7 +23,7 @@ int main()
 	int i,j,n,t;
 	int a[n],b[n];
 	
-	scanf("%d",&n);
+	scanf("%d",&n); 
 	for(i=0;i<n;i++)
 		scanf("%d",&a[i]);
 	scanf("%d",&t);
@@ -49,8 +49,8 @@ int main()
 int main()
 {
 	int i,n,j,k,temp;
-	scanf("%d",&n);
-	int a[n];
+	scanf("%d",&n); 
+	int a[n]; //很奇怪，读入n的数值后才可以声明数组，否则报错。
 	
 	for(i=0;i<n;i++)
 		scanf("%d",&a[i]);
