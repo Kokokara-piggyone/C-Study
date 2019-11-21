@@ -50,7 +50,7 @@ int main()
 {
 	int i,n,j,k,temp;
 	scanf("%d",&n); 
-	int a[n]; //很奇怪，读入n的数值后才可以声明数组，否则报错。
+	int a[n]; //很奇怪，读入n的数值后才可以声明数组，否则报错。法一则不需要。
 	
 	for(i=0;i<n;i++)
 		scanf("%d",&a[i]);
