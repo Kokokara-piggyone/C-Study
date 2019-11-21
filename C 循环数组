@@ -1,0 +1,70 @@
+/*
+题目描述 
+编写程序，将一维数组中的元素向右循环移动N次。
+输入 
+第一行整数n，表示数组大小为n
+第二行，n个数，表示数组中的n个元素。
+第三行，整数N，表示数组向右移动N次。
+输出 
+移动后的数组元素，每个元素后跟空格。
+样例输入 Copy 
+5
+1 2 3 4 5
+2
+样例输出 Copy 
+4 5 1 2 3 
+*/
+
+//法一 ：
+#include<stdio.h>
+
+int main()
+{
+	int i,j,n,t;
+	int a[n],b[n];
+	
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	scanf("%d",&t);
+	
+	t%=n; //提高效率，减少重复次数。
+	//以下两个循环，为便于理解，举个例子：
+	//如果是向右移动三位，其实就是把最右侧的三个元素提出转移到 最左端
+	//以下，第一个循环打印出移到左侧的最右侧元素，第二个循环打印被挤到后面的原左侧元素。 
+	for(i=0;i<t;i++)
+	{
+		b[i]=a[n-t+i];
+		printf("%d ",b[i]);
+	}
+	for(i=0;i<(n-t);i++)
+		printf("%d ",a[i]);
+	printf("\n");
+	return 0;
+} 
+
+//法二 ：
+#include<stdio.h>
+
+int main()
+{
+	int i,n,j,k,temp;
+	scanf("%d",&n);
+	int a[n];
+	
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	scanf("%d",&j);
+	
+	while(j--)
+	{
+		temp=a[n-1]; //将最右位元素提出保存在 temp中 
+		for(i=n-2;i>=0;i--)
+			a[i+1]=a[i]; //右移
+		a[0]=temp;  
+	}
+	
+	for(i=0;i<n;i++)
+		printf("%d ",a[i]);
+	return 0;
+} 
