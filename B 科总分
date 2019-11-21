@@ -25,7 +25,7 @@ int main()
 //可以这么理解，要求十个人的总成绩，所以要重复十次计算总成绩的循环，就是外循环。
 //每一次计算总成绩时，都是将自己的五科成绩加起来，怎么加？就再来一个循环实现累加。
 //累加完之后，注意是累加完之后，即已经退出循环了，此时将值赋给数组b中的相应元素存储。
-//然后就将 sum初始化，继续循环呗。 
+//然后就将 sum初始化，继续循环呗。     	
     for(i=0;i<10;i++)
     {    
         sum=0;
@@ -40,22 +40,14 @@ int main()
     min=b[0],idx_min=0;
     
     for(i=0;i<10;i++)
-    {
-        if(b[i]>max)
-        {
-	        max=b[i];
-	        idx_max=i;
-        }
-    }
-    printf("%d %d\n",a[idx_max][0],max);
+		if(b[i]>max)
+			max=b[i],idx_max=i;
+    
     for(i=0;i<10;i++)
-    {
         if(b[i]<min)
-        {
-            min=b[i];
-            idx_min=i;
-        }
-    }
+            min=b[i],idx_min=i;
+            
+    printf("%d %d\n",a[idx_max][0],max);
     printf("%d %d\n",a[idx_min][0],min);
     return 0;
 }
