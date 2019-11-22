@@ -1,0 +1,87 @@
+//问题 J: 密码翻译
+/*
+题目描述 
+在情报传递过程中,为了防止情报被截获,往往需要对情报用一定的方式加密,简单的加密算法虽然不足以完全避免情报被破译,但仍然能防止情报被轻易的识别. 我们给出一种最简的的加密方法,对给定的一个字符串,把其中从a-y,A-Y的字母用其后继字母替代,把z和Z用a和A替代,则可得到一个简单的加密字符 串.
+输入 
+第一行是字符串的数目n.
+其余n行每行一个字符串,用gets(s)方式读取这一行字符串.每个字符串长度小于80个字符.
+输出 
+输出每行字符串的加密字符串.
+样例输入 Copy 
+1
+Hello! How are you!
+样例输出 Copy 
+Ifmmp! Ipx bsf zpv!
+*/
+
+//法有误 ：
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char a[81];
+	int b,n,i,m;
+	scanf("%d",&b);
+	while(b--)
+	{
+		gets(a);
+		n=strlen(a);
+		for(i=0;i<n;i++)
+		{
+			if(('a'<=a[i]&&a[i]<'z')||('A'<=a[i]&&a[i]<'Z')) 
+				a[i]=a[i]+1;
+			else if(a[i]=='z'||a[i]=='Z') 
+				a[i]-=25;
+		}
+		puts(a);
+	}
+}
+//调整纠错 1：
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char a[81];
+	int b,c,n,i,m;
+	scanf("%d",&b);
+	getchar(); //切记切记啊！！！我咋记得你这块错了好多次了呢！！！ 
+	while(b--)
+	{
+		gets(a);
+		n=strlen(a);
+		for(i=0;i<n;i++)
+		{
+			if(('a'<=a[i]&&a[i]<'z')||('A'<=a[i]&&a[i]<'Z')) 
+				a[i]=a[i]+1;
+			else if(a[i]=='z'||a[i]=='Z') 
+				a[i]-=25;
+		}
+		puts(a);
+	}
+} 
+
+//调整纠错 2：
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char a[81];
+	int b,c,n,i,m;
+	scanf("%d ",&b); //在%d后加空格 把回车读走，否则会占掉接下来要输入的字符串的位置 
+	while(b--)
+	{
+		gets(a);
+		n=strlen(a);
+		for(i=0;i<n;i++)
+		{
+			if(('a'<=a[i]&&a[i]<'z')||('A'<=a[i]&&a[i]<'Z')) 
+				a[i]=a[i]+1;
+			else if(a[i]=='z'||a[i]=='Z') 
+				a[i]-=25;
+		}
+		puts(a);
+	}
+} 
