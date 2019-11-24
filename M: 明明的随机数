@@ -24,21 +24,21 @@ N
 int main()
 {
     int i,N,a[1001]={0},t;
-    int count=0;//计数器 
+    int count=0;//计数
     scanf("%d",&N);
     for(i=0;i<N;i++)
 	{
         scanf("%d",&t);
-        if(a[t]==0)
+        if(a[t]==0) //由于之前将数组a的各个元素初始化为0，所以如果a[t]=0，则说明此前该元素没有出现过，可以保留。 
 		{
-            a[t]=t;
-            count++;
+            a[t]=t;  //就算重复，此处的赋值也是无效的（两个数是一样的）
+            count++;  
         }
     }
     printf("%d\n",count);
     
     for(i=0;i<1001;i++)
-        if(a[i]!=0)
+        if(a[i]!=0) //不为0的元素则输出 
             printf("%d ",a[i]);
     return 0;
 }
