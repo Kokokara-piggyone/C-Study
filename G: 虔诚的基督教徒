@@ -1,0 +1,68 @@
+//G: 虔诚的基督教徒
+/*
+题目描述 
+小林的父母年纪有点大了，记性有点欠佳，同时他们又是虔诚的基督徒，每周日他们都要去教堂聚会祷告。每天他们问小林最多的问题就是“今天星期几了？”，小林有时也回答不出来，请大家编写一段程序帮助小林解决这个难题，这样他可以随时正确回答出父母的问题。 
+输入 
+年/月/日。有多组测试数据，以0结束输入 
+输出 
+星期几 
+样例输入 Copy 
+1/1/1
+2017/12/11
+2017/1/1
+0
+样例输出 Copy 
+星期一
+星期一
+星期日
+*/
+
+#include<stdio.h>
+
+int leap(int y)
+{
+	return y%4==0&&y%100!=0||y%400==0;
+}
+
+int days(int y,int m,int d)
+{
+	int i,sum=d,mon[12]={31,28+leap(y),31,30,31,30,31,31,30,31,30,31};
+	for(i=0;i<m-1;i++)
+		sum+=mon[i];
+	for(i=1;i<y;i++)
+	{
+		if(leap(i)==1)
+			sum+=366;
+		else
+			sum+=365;
+	}
+	return sum;
+} 
+
+int main()
+{
+	int y,m,d,ds,week;
+	char op; 
+	while(scanf("%d",&y)&&y!=0)
+	{
+		scanf("%c%d%c%d",&op,&m,&op,&d);
+		ds=days(y,m,d);
+		week=ds%7;
+		if(week==1)
+			printf("星期一\n"); 
+		if(week==2)
+			printf("星期二\n"); 
+		if(week==3)
+			printf("星期三\n"); 
+		if(week==4)
+			printf("星期四\n"); 
+		if(week==5)
+			printf("星期五\n"); 
+		if(week==6)
+			printf("星期六\n"); 
+		if(week==0)
+			printf("星期日\n"); 
+	}
+	return 0;
+}
+
