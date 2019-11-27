@@ -17,7 +17,7 @@ cba
 
 print()
 {
-    char a ;
+    char a;
     scanf("%c",&a);
     if(a!='#')
         print();
