@@ -1,0 +1,25 @@
+//D 月份全名
+/*
+题目描述 
+输入一个整型数，输出与该书对应的月份的英文月名。例如输入"3"，则输出March。
+输入 
+整数月份
+输出 
+英文月份
+样例输入 Copy 
+3
+样例输出 Copy 
+March
+*/
+
+
+#include<stdio.h>
+int main()
+{
+    char* Month[12]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+    int month;
+    scanf("%d",&month);
+    printf("%s\n",Month[month-1]);
+    return 0;
+}
+
