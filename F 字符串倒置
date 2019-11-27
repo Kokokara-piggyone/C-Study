@@ -1,0 +1,39 @@
+//F 字符串倒置
+/*
+题目描述 
+
+编写一个函数void StrRecCat（）把字符串s倒置后接到字符串t之后。主函数调用以上子函数，将字符串abc倒置以后接到字符串def之后，输出结果为：defcba。
+输入 
+输入两行，每行输入一个字符串，长度都不超过10个字符。
+输出 
+将第一个字符串倒置后放到第二个字符串的后面，输出新的字符串。
+样例输入 Copy 
+abc
+def
+样例输出 Copy 
+defcba
+*/
+
+#include<stdio.h>
+#include<string.h>
+
+void StrRecCat(char s[10],char t[10])
+{
+	int i,n,m;
+	char c[20];
+	n=strlen(t);
+	for(i=0;i<n;i++)
+		c[i]=t[i];
+	m=strlen(s);
+	for(i=0;i<m;i++)
+		c[n+m-i-1]=s[i];
+	printf("%s\n",c);
+}
+
+int main()
+{
+	char s[10],t[10];
+	scanf("%s%s",s,t);
+	StrRecCat(s,t);
+	return 0;
+}
