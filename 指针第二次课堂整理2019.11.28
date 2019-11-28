@@ -51,6 +51,24 @@ return 0
 return 1
 */
 
+/*
+字符串常量：char line[]="hello world"; 可更改
+指针常量： char *p="hello world"; 不可更改
+*/
+
+/*
+#include<stdio.h>
+
+int main()
+{
+	char *p="hello world";
+	printf("%s\n",p+2);
+	return 0;
+}
+*/
+
+//s=输出为 llo world 
+
 //递推 ：明确两点：①递归出口；②递推关系（程序颜值虽高，但效率低）
 //举例：
 // 求n!
