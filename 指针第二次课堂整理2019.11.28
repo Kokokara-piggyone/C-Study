@@ -1,0 +1,149 @@
+//冒泡法排序进阶(字符串排序)
+#include<stdio.h>
+#include<string.h>
+
+void bubble_sort(char a[][81],int n)
+{
+	int i,j;
+	char t[81];
+	for(i=0;i<n-1;i++)
+		for(j=0;j<n-1-i;j++)
+			if(strcmp(a[j],a[j+1])>0)
+				strcpy(t,a[j+1]),strcpy(a[j+1],a[j]),strcpy(a[j],t);	
+} 
+
+int main()
+{
+	char a[10][81];
+	int i;
+	for(i=0;i<10;i++)
+		gets(a[i]);
+	bubble_sort(a,10);
+	for(i=0;i<10;i++)
+		printf("%s\n",a[i]);
+	return 0;
+}
+
+//malloc和free
+/*
+现标准下：
+	int n;
+	scanf("%d",&n);
+	int a[n];
+	
+原标准下：
+	int n;
+	scanf("%d",&n);
+	int *p=(int*)malloc(n*sizeof(int));
+	//通过malloc手动分配内存，并强制转化为整形。 
+	int i;
+	for(i=0;i<n;i++) p[i]=i;
+	——————————
+	free(p);
+	//通过free手动释放内存。	
+*/
+
+//exit和return
+/*
+exit(0)
+exit(1)
+return 0
+return 1
+*/
+
+//递推 ：明确两点：①递归出口；②递推关系（程序颜值虽高，但效率低）
+//举例：
+// 求n!
+int fact(int n)
+{
+	if(n==1) return 1;
+	else return n*fact(n-1);
+} 
+
+//求斐波那契数列第n项
+int fib(int n)
+{
+	if(n==1||n==2)	return 1;
+	else return fib(n-1)+fib(n-2);
+} 
+ 
+//逆序输出：如abc#,则输出cba
+//第一种： 
+void reverse(char *p)
+{
+	if(*p=='#') return;
+	//通常，返回类型为void的函数使用return 语句是为了引起函数的强制结束，类似于循环结构中的break 
+	else
+	{
+		reverse(p+1);
+		printf("%c",*p);
+	}
+} 
+//第二种：
+void reverse(char *p)
+{
+	if(*p!='#')
+	{
+		reverse(p+1);
+		printf("%c",*p);	
+	}	
+} 
+
+//十进制转二进制
+void print2(int n)
+{
+	if(n/2==0) printf("%d",n);
+	else
+	{
+		print2(n/2);
+		printf("%d",n%2);
+	}
+}
+ 
+//十进制转十六进制
+#include<stdio.h>
+
+char int2char(int n)
+{
+	if(n<10) return n+'0';
+	//可以通过把整数各位上的数字加'0'转化成char型并存入字符数组中（用字符串逆序的方法 
+	else return 'A'+n-10;
+} 
+
+void print16(int n)
+{
+	if(n/16==0)	printf("%c",int2char(n));
+	else
+	{
+		print16(n/16);
+		printf("%c",int2char(n%16));
+	} 
+}
+
+//汉诺塔：把A上的n个盘子借助B移到C 
+/*
+①把A上的n-1个盘子移到B 
+②把A上剩余的盘子（最大）移到C 
+③把b上的n-1个盘子借助A移到C（递推关系） 
+*/
+#include<stdio.h>
+
+void hanoi(int n,char A,char B,char C)
+{
+	if(n==1) printf("%c--------->%c\n",A,C);
+	else
+	{
+		hanoi(n-1,A,C,B);
+		printf("%c--------->%c\n",A,C);
+		hanoi(n-1,B,A,C);
+	}
+} 
+
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	hanoi(n,'A','B','C');
+	return 0;
+}
+ 
