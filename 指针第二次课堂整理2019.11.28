@@ -51,24 +51,6 @@ return 0
 return 1
 */
 
-/*
-字符串常量：char line[]="hello world"; 可更改
-指针常量： char *p="hello world"; 不可更改
-*/
-
-/*
-#include<stdio.h>
-
-int main()
-{
-	char *p="hello world";
-	printf("%s\n",p+2);
-	return 0;
-}
-*/
-
-//s=输出为 llo world 
-
 //递推 ：明确两点：①递归出口；②递推关系（程序颜值虽高，但效率低）
 //举例：
 // 求n!
@@ -164,4 +146,19 @@ int main()
 	hanoi(n,'A','B','C');
 	return 0;
 }
+ 
+//下午上机课内容------>可与周末学习部分一同理解
+ 
+二维数组a，a+i往后挪一个一维数组的长度，a+i是第i个一维数组的首地址
+a+i和a[i]地址值是一样的，但a[i]作为数组首地址，a[i]+1只移动1个整型元素的位置 
+*(a+i)+j------>a[i]+j 
+*(a[i]+j)----->a[i][j]
+int b[3][4];
+b+1挪一行(以一个一维数组为步长)；*b+1挪一个(一个元素为步长) 
+
+char p1[]="hello";
+		   可改动 
+char *p2="hello";//指针常量 
+		   不可改动 
+
  
