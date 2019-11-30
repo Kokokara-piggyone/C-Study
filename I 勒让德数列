@@ -1,0 +1,32 @@
+//I 勒让德数列
+/*
+题目描述 
+n阶勒让德多项式定义为：
+pn(x)=1   (n=0)
+          x   (n=1)
+          ((2*n-1)*x-pn-1(x)-(n-1)*pn-2(x))/n     (n>1)
+输入 
+输入两个整数x和n
+输出 
+输出pn(x)的值，其值为浮点数，小数点后保留到第二位。
+样例输入 Copy 
+10 1
+样例输出 Copy 
+10.00
+*/
+
+#include<stdio.h>
+
+double legendre(int x,int n)
+{
+	if(n==0) return 1;
+	if(n==1) return x;
+	return  ((2*n-1)*x-legendre(x,n-1)-(n-1)*legendre(x,n-2))/n;
+}
+int main()
+{
+	int x,n;
+	scanf("%d%d",&x,&n);
+	printf("%.2lf\n",legendre(x,n));
+	return 0;
+}
