@@ -27,7 +27,7 @@ char * mystrcat(char *p1,char *p2)
 {
 	char *h=p1;
 	while(*p1++);
-	pi--;
+	p1--;
 	while(*p1++=*p2++);
 	return h;
 }
