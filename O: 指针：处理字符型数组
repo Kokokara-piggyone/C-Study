@@ -21,8 +21,12 @@ abc
 abc
 */
 
+#include<stdio.h>
 
-
+void foo(char *p) 
+{
+	gets(p);
+}
 
 //字符数组和字符串的区别
 #include <stdio.h>
