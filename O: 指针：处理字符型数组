@@ -1,0 +1,45 @@
+//O: 指针：处理字符型数组
+/*
+题目描述 
+从键盘上输入一串符号（以回车换行键为结束），将其以字符串形式存入一维字符型数组，然后再输出该字符型数组中的字符串。 
+注意：只提交头文件#include "stdio.h"和void foo(char *p) 函数，系统将自动附加下面的main函数后运行，请复制下面的main函数用于调试函数。 
+int main() 
+{ 
+    char s[100]; 
+    foo(s); 
+    printf("%s\n", s); 
+    return 0; 
+} 
+
+输入 
+一串符号 
+输出 
+字符型数组中的字符串 
+样例输入 Copy 
+abc
+样例输出 Copy 
+abc
+*/
+
+
+
+
+//字符数组和字符串的区别
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+    /*字符数组赋初值*/
+    char cArr[] = {'I','L','O','V','E','C'};
+    /*字符串赋初值*/
+    char sArr[] = "ILOVEC";
+    /*用sizeof（）求长度*/
+    printf("cArr的长度=%d\n", sizeof(cArr)); //6
+    printf("sArr的长度=%d\n", sizeof(sArr)); //7
+    return 0;
+}
+//字符串末尾补'\0'
+
+
+
+
