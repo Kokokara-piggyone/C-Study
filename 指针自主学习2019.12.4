@@ -1,0 +1,180 @@
+//指向指针的指针
+#include<stdio.h>
+
+int main()
+{
+	int num=5;
+	int *p=&num;
+	int **pp=&p; 
+	
+	printf("num:%d\n",num);
+	printf("*p:%d\n",*p);
+	printf("**p:%d\n",**pp);
+	printf("&p:%p,pp:%p\n",&p,pp);
+	printf("&num:%p,p:%p,*pp:%p\n",&num,p,*pp);
+	 
+	return 0;	
+}
+//运行结果：
+/* 
+num:5
+*p:5
+**p:5
+&p:000000000062FE08,pp:000000000062FE08
+&num:000000000062FE14,p:000000000062FE14,*pp:000000000062FE14 
+*/ 
+
+
+//指针数组和指向指针的指针
+//通过指向指针的指针进行分类 
+/*
+①避免重复分配内存
+②只需进行一处修改
+*/ 
+#include<stdio.h>
+
+int main()
+{
+	char *Koko[]={"Aa","Bb","Cc","Dd","EE"};
+
+	char **Two;
+	char **One[4];
+	int i;
+	
+	Two=&Koko[4];
+	One[0]=&Koko[0];
+	One[1]=&Koko[1];
+	One[2]=&Koko[2];
+	One[3]=&Koko[3];
+	
+	printf("Two:%s\n",*Two);
+	printf("One:");
+	for(i=0;i<4;i++)
+		printf("%s ",*One[i]);
+	
+	return 0;	
+} 
+//运行结果：
+/*
+Two:EE
+One:Aa Bb Cc Dd
+*/ 
+
+//分析：
+/*
+指针数组中每个元素（字符串：指向字符的指针）其实都是指针，
+而数组又可以用指针的形式来访问，
+所以我们可以用指向指针的指针来指向指针数组
+*/ 
+
+
+//数组指针和二维数组
+//一维数组 
+#include<stdio.h>
+
+int main()
+{
+	int a[10]={0,1,2,3,4,5,6,7,8,9};
+	int *p=a;
+	int i;
+	for(i=0;i<10;i++)
+		printf("%d\n",*(p+i));
+	return 0;	
+} 
+
+//二维数组
+//错误版： 
+#include<stdio.h>
+
+int main()
+{
+	int a[3][4]={{0,1,2,3},{4,5,6,7},{8,9,10,11}};
+	int **p=a;
+	int i,j;
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<4;j++)
+		{
+			printf("%2d ",*(*(p+i)+j));
+		}
+		printf("\n");
+	}
+	return 0;	
+} 
+
+//错误分析
+#include<stdio.h>
+
+int main()
+{
+	int a[3][4]={{0,1,2,3},{4,5,6,7},{8,9,10,11}};
+	int **p=a;
+	int i,j;
+	/* 
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<4;j++)
+		{
+			printf("%2d ",*(*(p+i)+j));
+		}
+		printf("\n");
+	}
+	*/
+	printf("p:%p,a:%p\n",p,a);
+	printf("p+1:%p,a+1:%p\n",p+1,a+1); 
+	return 0;	
+} 
+//运行结果：
+p:000000000062FDE0,a:000000000062FDE0
+p+1:000000000062FDE8,a+1:000000000062FDF0
+//跨度不同  
+
+//改正版1： 
+#include<stdio.h>
+
+int main()
+{
+	int a[3][4]={{0,1,2,3},{4,5,6,7},{8,9,10,11}};
+	//int **p=a;
+	int i,j;
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<4;j++)
+		{
+			printf("%2d ",*(*(a+i)+j));
+		}
+		printf("\n");
+	}
+	return 0;	
+}  
+
+//改正版2：
+//补漏：
+/*
+int b[10];
+--> b:19921780
+	&b:19921780
+	b+1:19921784
+	&b+1:19921820
+b表示"数组首个元素的地址，int型"，+1即+4；&b指数组b[10]的地址，长度为40，+1即+40. 
+*/ 
+#include<stdio.h>
+
+int main()
+{
+	int a[][4]={{0,1,2,3},{4,5,6,7},{8,9,10,11}};
+	//数组指针，指明列 
+	int (*p)[4]=a; 
+	//p指向4个元素的一维数组，所以跨度为4*4，而a指向二维数组第一个元素的地址 
+	//简单讲，跨度一致，可以进行复制 
+	int i,j;
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<4;j++)
+		{
+			printf("%2d ",*(*(p+i)+j));
+		}
+		printf("\n");
+	}
+	return 0;	
+} 
