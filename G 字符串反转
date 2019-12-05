@@ -25,13 +25,31 @@ print()
         printf("%c",a);
 }
 
+//放一起呗
 int main()
 {
     print();
     return 0;
 }
 
+#include<stdio.h>
 
+print()
+{
+    char a;
+    scanf("%c",&a);
+    if(a!='#')
+    {
+    	print();
+        printf("%c",a);
+	}
+}
+
+int main()
+{
+    print();
+    return 0;
+}
 
 
  
