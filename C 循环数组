@@ -56,6 +56,7 @@ int main()
 		scanf("%d",&a[i]);
 	scanf("%d",&j);
 	
+        j%=n;
 	while(j--)
 	{
 		temp=a[n-1]; //将最右位元素提出保存在 temp中 
