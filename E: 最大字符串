@@ -21,7 +21,7 @@ bac000
 
 int main()
 {
-	int i=0;
+	int i;
 	char s[80]={""},max[80]={""};
 	scanf("%s",s);
 	strcpy(max,s);
