@@ -36,12 +36,12 @@ void fun(int  *p, int *sum, int *num)
 	for(i=0;i<9;i++)
 		*sum+=p[i];
 	avr=*sum*1.0/9;
-	*sum=0;
+	*sum=0; 
 	*num=0;
 	for(i=0;i<9;i++)
 		if(p[i]>avr)
 		{
 			*sum+=p[i];
-			*num=*num+1; //改为*num++则不可以 
+			*num=*num+1; //改为*num++则不可以，应改为(*num)++ 
 		}	
 }
