@@ -1,0 +1,69 @@
+//用指针改写 #include<string.h>文件头下的函数
+//strlen
+int mystrlen(char *x)
+{
+	char *y=x;
+	while(*y++);
+	return y-x-1;
+} 
+
+//strcpy
+//第一种 
+void mystrcpy(char *p1,char *p2)
+{
+	while(*p1++=*p2++);
+}
+//第二种
+char * mystrcpy(char *p1,char *p2)
+{
+	char *h=p1;
+	while(*p1++=*p2++);
+	return h;	
+}
+
+//strcat
+//第一种 
+char * mystrcat(char *p1,char *p2)
+{
+	char *h=p1;
+	while(*p1++);
+	p1--;
+	while(*p1++=*p2++);
+	return h;
+}
+//第二种
+char * mystrcat(char *p1,char *p2)
+{
+	char *h=p1;
+	while(*p1) p1++;
+	while(*p1++=*p2++);
+	return h;	
+} 
+
+//strcmp
+int mystrcmp(char *p1,char *p2)
+{
+	while(*p1==*p2)
+	{
+		if(*p1=='\0') return 0;
+		p1++,p2++;
+	}
+	return *p1-*p2;
+}
+
+//思考输出什么 有坑啊
+#include<stdio.h>
+int main()
+{
+	char a[]="123456789",*p=a;
+	int i=0;
+	while(*p)
+	{
+		if(i%2==0)
+			*p='*';
+			p++,i++;
+	}
+	puts(a);
+	return 0;	
+} 
+//输出 *2*4*6*8* 

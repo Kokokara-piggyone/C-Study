@@ -1,0 +1,36 @@
+//C 指针连接字串
+/*
+题目描述 
+将字符串a的内容连接到字串b中，用指针实现。
+注意：此题用C语言完成时，必须使用指针方法处理，只提交头文件和
+cat(char *a,char *b)
+函数，系统将自动附加下面的main函数后运行，请复制下面的main函数用于调试cat函数。
+其他语言的答案无此要求。
+int main()
+{ 
+   char a[100],b[100]; 
+   scanf("%s%s",a,b); 
+   cat(a,b); 
+   printf("%s",b); 
+} 
+输入 
+两行字符串，分别对应a和b
+输出 
+将a附加到b后，然后输出b
+样例输入 Copy 
+forever
+duke
+样例输出 Copy 
+dukeforever
+*/
+
+#include<stdio.h>
+
+char* cat(char *a,char *b)
+{
+	char *h=b;
+	while(*b++);
+	b--;
+	while(*b++=*a++);
+	return h;
+}

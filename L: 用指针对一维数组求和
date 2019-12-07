@@ -1,0 +1,47 @@
+//L: 用指针对一维数组求和
+/*
+题目描述 
+用指针对一维数组求和，输出大于平均值的和，及其大于平均数的个数.
+必须使用指针方法处理，只提交头文件#include <stdio.h> 
+和void fun(int  *p, int *sum, int *num)函数，系统将自动附加下面的main函数后运行，请复制下面的main函数用于调试函数。
+int main(){
+    int a[9], sum=0, num=0;
+    for (int  i = 0; i < 9; i++)  {
+        scanf("%d",&a[i]);
+    }
+
+    fun(a, &sum, &num);
+    printf("%d,%d\n",sum,num);
+    return 0;
+}
+
+输入 
+9个数
+
+输出 
+输出大于平均值的和，及其大于平均数的个数
+
+样例输入 Copy 
+1 2 3 4 5 6 7 8 9
+样例输出 Copy 
+30,4
+*/
+
+#include<stdio.h>
+
+void fun(int  *p, int *sum, int *num)
+{
+	int i;
+	float avr;
+	for(i=0;i<9;i++)
+		*sum+=p[i];
+	avr=*sum*1.0/9;
+	*sum=0; 
+	*num=0;
+	for(i=0;i<9;i++)
+		if(p[i]>avr)
+		{
+			*sum+=p[i];
+			*num=*num+1; //改为*num++则不可以，应改为(*num)++ 
+		}	
+}

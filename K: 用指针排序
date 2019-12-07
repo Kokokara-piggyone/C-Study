@@ -1,0 +1,50 @@
+// K: 用指针排序
+/*
+题目描述 
+用指针方法编写一个程序，输入3个整数，将它们按由小到大的顺序输出。
+此题用C语言完成时，必须使用指针方法处理，只提交头文件#include <stdio.h> 和int swap(int *pa, int *pb, int *pc)函数，系统将自动附加下面的main函数后运行，请复制下面的main函数用于调试函数。
+int main()
+{
+    int a, b, c;
+    while (scanf("%d%d%d", &a, &b, &c) != EOF)
+    {
+        if (swap(&a, &b, &c) == -1)
+            printf("error\n");
+        else
+            printf("%d,%d,%d\n", a, b, c);
+    }
+    return 0;
+
+}
+
+输入 
+多组数据，每组输入3个整数
+
+输出 
+从小到大排序后输出每组数,数之间用逗号分隔，三个数相同，输出error
+
+样例输入 Copy 
+1 1 1
+2 1 -1
+样例输出 Copy 
+error
+-1,1,2
+*/
+
+#include<stdio.h>
+
+int swap(int *pa, int *pb, int *pc)
+{
+	int max=*pa,min=*pa;
+	int a=*pa,b=*pb,c=*pc; //为最终输出*pb值的正确，要在起始保存*pa,*pb,*pc的值。
+	if(*pa==*pb&&*pb==*pc)
+		return -1;
+	else
+	{
+		if(*pb>=max) max=*pb;
+		if(*pc>=max) max=*pc;
+		if(*pb<=min) min=*pb;
+		if(*pc<=min) min=*pc;
+		return *pa=min,*pb=a+b+c-max-min,*pc=max; //如果用*pb=*pa+*pb+*pc-max-min,假使该指针变量交换过，则此时的值与起始值不同
+	}
+}
