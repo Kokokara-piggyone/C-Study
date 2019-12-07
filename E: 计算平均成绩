@@ -1,0 +1,44 @@
+//E: 计算平均成绩
+/*
+题目描述 
+输入一批学生（<50人）的OJ成绩，计算他们的平均成绩并按从小到大的顺序输出他们的成绩。 
+输入 
+输入数据有多组，每组占两行，第一行输入整数n，第二行输入n个学生的OJ成绩，数据之间用空格隔开。 
+输出 
+输出两行，第一行为平均成绩，结果保留两位小数；第二行为从小到大顺序输出的成绩 
+样例输入 Copy 
+5
+44 78 90 68 85
+样例输出 Copy 
+73.00
+44 68 78 85 90
+*/
+
+#include<stdio.h>
+
+int main()
+{
+	int i,j,n,t,sum;
+	float aver;
+	while(scanf("%d",&n)!=EOF)
+	{
+		int a[n];
+		for(i=sum=0;i<n;i++)
+		{
+			scanf("%d",&a[i]);
+			sum+=a[i];
+		}
+		aver=sum*1.0/n;
+		printf("%.2f\n",aver);
+			
+		for(i=0;i<n-1;i++)
+			for(j=0;j<n-i-1;j++)  
+				if(a[j]>a[j+1])
+					t=a[j],a[j]=a[j+1],a[j+1]=t; 
+						
+		for(i=0;i<n;i++)
+			printf("%d ",a[i]);	
+		putchar('\n');
+	}
+	return 0;
+}

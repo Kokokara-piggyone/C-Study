@@ -1,0 +1,90 @@
+//K 名词复数
+/*
+题目描述 
+请编一个程序，可以将英语规则名词由单数变成复数。已知规则如下：
+
+（a）以辅音字母y结尾，则将y改成i，再加es；
+（b）以s、x、ch、sh结尾，则加es；
+（c）以元音字母o结尾，则加es；
+（d）其他情况直接加s。
+要求用键盘输入英语规则名词，屏幕输出该名词的复数形式。
+
+输入 
+先输入一个整数n，表示有n个名词(n<100);
+此后有n行的字符串，每个字符串表示一个名词(每个名词长度不超过20个字符)。
+
+输出 
+每行输出一个名词的复数形式。
+样例输入 Copy 
+7
+false
+key
+gets
+index
+getch
+ash
+supercargo
+样例输出 Copy 
+falses
+keies
+getses
+indexes
+getches
+ashes
+supercargoes
+*/
+
+
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	char a[20];
+	int i,n,len;
+	scanf("%d",&n);
+	
+	for(i=0;i<n;i++)
+	{
+		scanf("%s",a); //不可用 gets(a); 
+		len=strlen(a);
+		if(a[len-1]=='y')
+		{
+			a[len-1]='i';
+			a[len]='e';
+			a[len+1]='s';
+			a[len+2]='\0';
+		}
+		else if(a[len-1]=='s'||a[len-1]=='x'||a[len-2]=='c'&&a[len-1]=='h'||a[len-2]=='s'&&a[len-1]=='h'||a[len-1]=='o')
+		{
+			a[len]='e';
+			a[len+1]='s';
+			a[len+2]='\0';
+		}
+		else
+		{
+			a[len]='s';
+			a[len+1]='\0';
+		}
+		printf("%s\n",a); //可用 puts(a);
+	}
+	return 0;
+}
+
+/*
+总结 gets和scanf的区别
+1 截止字符
+gets 为换行符，即遇换行符结束输入
+scanf 为空白符，即空格符，制表符，换行符
+所以，如果读入的字符串中有空格，则应当用gets读入
+2 对截止字符的处理不同
+gets 会读入截止字符 \n，同时将 \n转化为 \0
+scanf 遇到截止字符是不会继续读取，而将其存储于buffer中
+所以，如果用scanf 输入字符串，需要 getchar(); 来将buffer中的截止字符读走，而gets则不需要。
+3 返回值类型不同
+gets的返回值为char*型，当读入成功时会返回输入的字符串指针地址，出错时返回NULL。
+scanf返回值为int型，返回实际成功赋值的变量个数，当遇到文件结尾标识时返回EOF。
+*/ 
+
+
+

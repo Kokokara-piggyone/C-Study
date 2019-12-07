@@ -1,0 +1,65 @@
+//H: 小红的密码翻译
+/*
+题目描述 
+小红想了个加密方法，她在密码之上再加一套密码，变换方法是：假设原来一个QQ上的密码为ZhangPing1998,为了方便记忆，她通过一种算法把这个密码变换成9FYLE7GLE1998，这个密码是她的名字和出生年份，怎么忘都忘不了，而且可以明目张胆地放在显眼的地方而不被别人知道真正的密码。她是这么变换的，大家都知道手机上的字母：1--1，abc--2, def--3, ghi--4, jkl--5, mno--6, pqrs--7, tuv--8 wxyz--9, 0--0，小红把密码中出现的大写字母都变成对应的数字，数字和其他的符号都不做变换，声明：密码中没有空格，而密码中出现的小写字母则变成大写之后往前移两位，如：x，先变成大写再往前移两位就是V。a先变成大写再往前移两位是Y。 
+输入 
+一组原始密码（不多于20个字符），中间没有空格 
+输出 
+变化后的密码 
+样例输入 Copy 
+ZhangPing1998
+样例输出 Copy 
+9FYLE7GLE1998
+*/
+
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	int i,len;
+	char a[20];
+	scanf("%s",&a);
+	len=strlen(a);
+	for(i=0;i<len;i++)
+	{
+		if(a[i]>='A'&&a[i]<='C')
+			a[i]='2'; //注意：由于a为字符串数组，所以不可以直接等于2，而应当加单引号。 
+		else if(a[i]>='D'&&a[i]<='F')
+			a[i]='3';
+		else if(a[i]>='G'&&a[i]<='I')
+			a[i]='4';
+		else if(a[i]>='J'&&a[i]<='L')
+			a[i]='5';
+		else if(a[i]>='M'&&a[i]<='O')
+			a[i]='6';
+		else if(a[i]>='P'&&a[i]<='S')
+			a[i]='7';
+		else if(a[i]>='T'&&a[i]<='V')
+			a[i]='8';
+		else if(a[i]>='W'&&a[i]<='Z')
+			a[i]='9';
+		else if(a[i]>='c'&&a[i]<='z')
+			a[i]=a[i]-34;
+		else if(a[i]=='a')
+			a[i]='Y';
+		else if(a[i]=='b')
+			a[i]='Z';
+	}
+	puts(a);
+	return 0;
+}
+
+/*
+[Warning] passing argument 1 of 'strlen' from incompatible pointer type如何处理： 
+当写为：
+	int a[20];
+	scanf("%s",&a);
+	len=strlen(a);
+会警告，应当改为：
+	char a[20];
+	scanf("%s",&a);
+	len=strlen(a);
+这是因为函数strlen是用来处理字符串的，不能用来来处理int型数组。
+*/ 
+ 

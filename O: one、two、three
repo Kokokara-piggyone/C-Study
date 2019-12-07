@@ -1,0 +1,88 @@
+//O: one、two、three
+/*
+题目描述 
+
+
+弟弟刚刚学会写英语的一(one)、二(two)和三(three)。他在纸上写了好些一二三，可惜有些字母写错了。已知每个单词最多有一个字母写错了（单词长度肯定不会错），你能认出他写的啥吗？
+
+输入 
+
+
+第一行为单词的个数（不超过 10）。以下每行为一个单词，单词长度正确，且最多有一个字母写错。所有字母都是小写的。
+
+输出 
+
+
+对于每组测试数据，输出一行，即该单词的阿拉伯数字。输入保证只有一种理解方式。
+
+样例输入 Copy 
+3
+owe
+too
+theee
+样例输出 Copy 
+1
+2
+3
+*/
+//法一：用scanf读入字符串数组a
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	int n,i,len,k;
+	scanf("%d",&n);
+	while(n--)
+	{
+		char a[6],b[]="one";
+		scanf("%s",a); 
+		len=strlen(a);
+		k=0;
+		if(len==5) //在1 2 3三个单词中，1 2长度为3，3长度为5，由此可判断3 
+		{
+			printf("3\n");
+			continue;
+		}
+		for(i=0;i<3;i++) //用k计数，遍历各字母，判断是不是one，即与b[]相同 
+			if(a[i]==b[i])
+				k++;
+		if(k>=2)
+			printf("1\n");
+		else
+			printf("2\n");
+	}
+	return 0;
+}
+
+//法二：用gets读入字符串数组a
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	int n,i,len,k;
+	scanf("%d",&n);
+	getchar(); //更改处：读走buffer里的回车 如果不读走的话，摁一下回车，下面的那个gets就会读走了
+	while(n--)
+	{
+		char a[6],b[]="one";
+		gets(a); //更改处
+		len=strlen(a);
+		k=0;
+		if(len==5)
+		{
+			printf("3\n");
+			continue;
+		}
+		for(i=0;i<3;i++)
+			if(a[i]==b[i])
+				k++;
+		if(k>=2)
+			printf("1\n");
+		else
+			printf("2\n");
+	}
+	return 0;
+}
+

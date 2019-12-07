@@ -1,0 +1,68 @@
+//C: 最高成绩
+/*
+题目描述 
+连续输入一批学生的成绩，直到输入成绩的数量超过50个或者输入的成绩不是有效成绩（有效成绩为0~~100），将输入的有效成绩存入数组mark中，在数组中查找并输出最高分。函数getmax（array , m）在有m个元素的一维数组array中找出并返回最大值。 
+注意：程序自动附加main函数，提交代码时请勿提交main函数部分。 
+#include<stdio.h> 
+#define MAXNUM 80 
+int main ( ) 
+{ 
+    int k, x; 
+    int mark[MAXNUM]; 
+    k = 0; 
+    scanf("%d",&x); 
+    while( k < MAXNUM && x >=0 && x <= 100  ) 
+    { 
+         mark[k++] = x; 
+         scanf("%d",&x); 
+    } 
+    if (k > 0) printf("Max=%d\n", getmax( mark , k) ); 
+    else  printf ("No marks ! \n"); 
+    return 0; 
+} 
+
+输入 
+一批学生成绩。 
+输出 
+最高成绩 
+样例输入 Copy 
+90 80 77 65 -1
+样例输出 Copy 
+Max=90
+*/
+
+#include<stdio.h>
+#define MAXNUM 80
+int getmax(int array[],int m)
+{
+	int i,j,t;
+	for(i=0;i<m-1;i++)
+		for(j=0;j<m-1-i;j++)
+			if(array[j]>array[j+1])
+				t=array[j],array[j]=array[j+1],array[j+1]=t;
+	return array[m-1];
+}
+
+int main ( ) 
+{ 
+    int k, x; 
+    int mark[MAXNUM]; 
+    k = 0; 
+    scanf("%d",&x); 
+    while( k < MAXNUM && x >=0 && x <= 100  ) 
+    { 
+         mark[k++] = x; 
+         scanf("%d",&x); 
+    } 
+    if (k > 0) printf("Max=%d\n", getmax( mark , k) ); 
+    else  printf ("No marks ! \n"); 
+    return 0; 
+} 
+//就一冒泡排序
+
+
+
+
+
+
+

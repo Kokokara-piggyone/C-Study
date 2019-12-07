@@ -1,0 +1,75 @@
+//L: 哥德巴赫猜想
+/*
+题目描述 
+任何大于等于6的偶数均可表示成两个素数之和，例如6=3+3,8=3+5等，这就是著名的哥德巴赫猜想。现有多个整数，请找出这样的偶数及其素数和表示。
+
+输入 
+有多组测试数据，输入数据为整数，且输入数据为0时结束测试。
+输出 
+ 输出分以下几种情况：
+1）n>=6的偶数，直接输出素数和表示，多组结果取第一个素数为最小的一组。
+2）n>0且n<6的数，直接输出“n is smaller than 6!”
+3)  n>6的奇数，直接输出“n is an odd number!”
+4)  n<0的数，直接输出“n is a negative number!”
+样例输入 Copy 
+6
+8
+15
+10
+-5
+4
+12
+0
+样例输出 Copy 
+6=3+3
+8=3+5
+15 is an odd number!
+10=3+7
+-5 is a negative number!
+4 is smaller than 6!
+12=5+7
+*/
+
+
+#include<stdio.h>
+int isprime(int n)
+{
+    int i;
+    for(i=2;i<=n/2;i++)
+        if(n%i==0)
+        break;
+    return i>n/2&&n!=1;
+}
+
+int main()
+{
+	int i,n;
+	
+	while(scanf("%d",&n)&&n!=0)
+	{
+		if(n<0)
+			printf("%d is a negative number!\n",n);
+		else if(n>0&&n<6)
+			printf("%d is smaller than 6!\n",n);
+		else if(n>6&&n%2==1)
+			printf("%d is an odd number!\n",n);
+		else if(n>=6&&n%2==0)
+		{
+			for(i=3;i<n;i++)
+				if(isprime(i)==1&&i%2==1&&isprime(n-i)==1&&(n-i)%2==1)
+				{
+					printf("%d=%d+%d\n",n,i,n-i);
+					break;
+				}
+		}
+	}
+	return 0;	
+} 
+
+/*
+完成时在用while语句实现输0退出时遇到了阻碍，总结如下：
+如果写 while(scanf("%d",&n)!=0),则无法实现输0退出的目的；
+如果写 scanf("%d",&n)； while(n!=0),则会陷入死循环； 
+最后改为 while(scanf("%d",&n)&&n!=0)后可以成功执行。
+前两种写法常见于 while(scanf("%d",&n)!=EOF)
+*/ 
